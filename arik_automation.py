@@ -9,7 +9,7 @@ from get_minimum_flight import get_minimum_flight_price_detail
 URL = "https://www.arikair.com/"
 
 
-def flyunited():
+def arikFlightAutomation(location, destination, depDate):
 
     chrome_options = Options()
     chrome_options.add_experimental_option('detach', True)
@@ -24,16 +24,16 @@ def flyunited():
 
     from_selection = Select(driver.find_element(by=By.XPATH, value="//select[@id='depPort']"))
 
-    from_selection.select_by_value("ABV")
+    from_selection.select_by_value(location)
 
     time.sleep(5)
     dest_selection = Select(driver.find_element(by=By.XPATH, value="//select[@id='arrPort']"))
-    dest_selection.select_by_value("LOS")
+    dest_selection.select_by_value(destination)
 
 
     flight_date = driver.find_element(by=By.XPATH, value="//input[@id='departureDate']")
     flight_date.clear()
-    flight_date.send_keys("10/03/2025")
+    flight_date.send_keys(depDate)
 
     driver.find_element(by=By.XPATH, value="//button[@id='search']").click()
 
@@ -58,3 +58,4 @@ def flyunited():
     driver.quit()
 
     return get_minimum_flight_price_detail(flight_details)
+

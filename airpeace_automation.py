@@ -8,7 +8,7 @@ from get_minimum_flight import get_minimum_flight_price_detail
 
 URL = "https://flyairpeace.com/"
 
-def airpeace():
+def airpeaceAutomation(location, destination, depDate):
     chrome_options = Options()
     chrome_options.add_experimental_option('detach', True)
 
@@ -23,17 +23,17 @@ def airpeace():
 
 
 
-    select_departure.select_by_value('ABV')
+    select_departure.select_by_value(location)
 
     time.sleep(5)
 
     select_arrival = Select(driver.find_element(by=By.XPATH, value="//select[@name='arrPort']"))
 
-    select_arrival.select_by_value("LOS")
+    select_arrival.select_by_value(destination)
 
 
     departureDate = driver.find_element(by=By.XPATH, value="//input[@name='departureDate']")
-    departureDate.send_keys("10/03/2025")
+    departureDate.send_keys(depDate)
 
 
     search_button = driver.find_element(by=By.XPATH, value="//button[contains(text(), 'Search flights')]")

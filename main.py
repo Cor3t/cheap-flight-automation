@@ -1,13 +1,18 @@
-from airpeace_automation import airpeace
-from flyunited_automation import flyunited
+from airpeace_automation import airpeaceAutomation
+from arik_automation import arikFlightAutomation
 from get_minimum_flight import get_minimum_flight_price_detail
 
 
-result1 = airpeace()
-result2 = flyunited()
+loc = "ABV"
+des = "LOS"
+desDate = "23/03/2025"
 
-results = [result1, result2]
+result2 = arikFlightAutomation(loc, des, desDate)
+print(result2)
 
-cheapest = get_minimum_flight_price_detail(results)
+result1 = airpeaceAutomation(loc, des, desDate)
+print(result1)
 
-print(cheapest)
+
+
+
